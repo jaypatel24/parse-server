@@ -424,8 +424,7 @@ const buildWhereClause = ({ schema, query, index }) => {
       const point = fieldValue.$nearSphere;
       const distance = fieldValue.$maxDistance;
       const distanceInKM = distance * 6371 * 1000;
-      patterns.push(`ST_distance_sphere($${index}:name::geometry, POINT($${index + 1}, $${index + 2})::geometry) <= $${index + 3}`);
-      sorts.push(`ST_distance_sphere($${index}:name::geometry, POINT($${index + 1}, $${index + 2})::geometry) ASC`)
+      patterns.push(`ST_DistanceSphere($${index}:name::geometry, POINT($${index + 1}, $${index + 2})::geometry) <= $${index + 3}`);
       values.push(fieldName, point.longitude, point.latitude, distanceInKM);
       index += 4;
     }
