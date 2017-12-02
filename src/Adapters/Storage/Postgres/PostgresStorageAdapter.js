@@ -288,7 +288,11 @@ const buildWhereClause = ({ schema, query, index }): WhereClause => {
       index += 1;
       continue;
     } else if (typeof fieldValue === 'string') {
-      patterns.push(`$${index}:name = $${index + 1}`);
+      if (isArrayField) {
+        patterns.push('$' + index + ':name ? $' + (index + 1));
+      } else {
+        patterns.push('$' + index + ':name = $' + (index + 1));
+      }
       values.push(fieldName, fieldValue);
       index += 2;
     } else if (typeof fieldValue === 'boolean') {
