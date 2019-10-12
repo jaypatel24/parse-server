@@ -1007,7 +1007,7 @@ DatabaseController.prototype.performInitialization = function() {
 
   // Create tables for volatile classes
   const adapterInit = this.adapter.performInitialization({ VolatileClassesSchemas: SchemaController.VolatileClassesSchemas });
-  return Promise.all([usernameUniqueness, emailUniqueness, roleUniqueness, adapterInit]);
+  return Promise.all([roleUniqueness, adapterInit]);
 }
 
 function joinTableName(className, key) {
