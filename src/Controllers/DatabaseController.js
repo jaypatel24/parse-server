@@ -984,19 +984,19 @@ DatabaseController.prototype.performInitialization = function() {
   const roleClassPromise = this.loadSchema()
     .then(schema => schema.enforceClassExists('_Role'))
 
-  const usernameUniqueness = userClassPromise
-    .then(() => this.adapter.ensureUniqueness('_User', requiredUserFields, ['username']))
-    .catch(error => {
-      logger.warn('Unable to ensure uniqueness for usernames: ', error);
-      throw error;
-    });
+  // const usernameUniqueness = userClassPromise
+  //   .then(() => this.adapter.ensureUniqueness('_User', requiredUserFields, ['username']))
+  //   .catch(error => {
+  //     logger.warn('Unable to ensure uniqueness for usernames: ', error);
+  //     throw error;
+  //   });
 
-  const emailUniqueness = userClassPromise
-    .then(() => this.adapter.ensureUniqueness('_User', requiredUserFields, ['email']))
-    .catch(error => {
-      logger.warn('Unable to ensure uniqueness for user email addresses: ', error);
-      throw error;
-    });
+  // const emailUniqueness = userClassPromise
+  //   .then(() => this.adapter.ensureUniqueness('_User', requiredUserFields, ['email']))
+  //   .catch(error => {
+  //     logger.warn('Unable to ensure uniqueness for user email addresses: ', error);
+  //     throw error;
+  //   });
 
   const roleUniqueness = roleClassPromise
     .then(() => this.adapter.ensureUniqueness('_Role', requiredRoleFields, ['name']))
