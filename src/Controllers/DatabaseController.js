@@ -976,6 +976,7 @@ DatabaseController.prototype.addPointerPermissions = function(schema, className,
 // TODO: create indexes on first creation of a _User object. Otherwise it's impossible to
 // have a Parse app without it having a _User collection.
 DatabaseController.prototype.performInitialization = function() {
+  return true;
   const requiredUserFields = { fields: { ...SchemaController.defaultColumns._Default, ...SchemaController.defaultColumns._User } };
   const requiredRoleFields = { fields: { ...SchemaController.defaultColumns._Default, ...SchemaController.defaultColumns._Role } };
 
